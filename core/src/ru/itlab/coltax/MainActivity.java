@@ -15,8 +15,8 @@ public class MainActivity extends Game implements ApplicationListener {
     AboutUsScreen aus;
     SettingsScreen ss;
     BallsGameScreen bgs;
-    public static boolean isExit = false, changeGame = false;
-    public static int months = 1;
+    public static boolean isExit = false;
+    public static int months = 1, changeGame = 0;
 
     @Override
     public void create() {
@@ -59,14 +59,12 @@ public class MainActivity extends Game implements ApplicationListener {
                     break;
             }
 
-        if(getScreen().equals(gs) && changeGame){
-            setScreen(bgs);
-            gs.dispose();
-            changeGame = false;
-        } else if(getScreen().equals(bgs) && changeGame){
-            setScreen(gs);
-            bgs.dispose();
-            changeGame = false;
+        switch (changeGame){
+            case 1:
+                setScreen(gs);
+                bgs.dispose();
+            case 2:
+            case 3:
         }
 
         if(isExit){

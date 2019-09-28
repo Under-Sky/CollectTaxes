@@ -2,9 +2,12 @@ package ru.itlab.coltax;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
@@ -22,7 +25,8 @@ public class GameScreen implements Screen {
     StretchViewport viewport;
     Group choose, gameGroup;
     float govCount, busCount;
-    ImageButton taxButton;
+    int capital, profit;
+    ImageButton taxButton, infoButton;
 
     @Override
     public void show() {
@@ -30,8 +34,11 @@ public class GameScreen implements Screen {
         stage = new Stage(viewport);
         choose = new Group();
         gameGroup = new Group();
+
         govCount = 55;
         busCount = 45;
+        capital = 150000;
+        profit = -30000;
 
         gameGroup.addActor(new GameBack());
         taxButton = createGameImageButton(295, 370, 40, 40, "tax");
@@ -41,7 +48,14 @@ public class GameScreen implements Screen {
                 MainActivity.changeGame = true;
             }
         });
-        gameGroup.addActor(taxButton);
+        infoButton = createGameImageButton(295, 370, 40, 40, "tax");
+        infoButton.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                MainActivity.changeGame = true;
+            }
+        });
+        gameGroup.addActor(infoButton);
 
         choose.addActor(new ChooseBack());
         createImageButton(80, 100, 200, 200, "ooo", false); //OOO
@@ -144,11 +158,30 @@ public class GameScreen implements Screen {
 
     public class GameBack extends Actor {
         Texture gameBack, govLine, busLine;
+        BitmapFont font;
+        GlyphLayout glyphBus, glyphGov, glyphCap, glyphProf;
 
         public GameBack() {
             gameBack = new Texture(Gdx.files.internal("gameBack.png"));
             govLine = new Texture(Gdx.files.internal("govLine.png"));
             busLine = new Texture(Gdx.files.internal("busLine.png"));
+            font = new BitmapFont(Gdx.files.internal("bold.fnt"));
+            font.getData().setScale((float) 1 / 2);
+        }
+
+        @Override
+        public void act(float delta) {
+            font.setColor(Color.BLACK);
+            glyphBus = new GlyphLayout(font, govCount + "%");
+            glyphGov = new GlyphLayout(font, busCount + "%");
+            font.setColor(Color.GREEN);
+            glyphCap = new GlyphLayout(font, capital + "руб.");
+            if (profit >= 0)
+                glyphProf = new GlyphLayout(font, "+" + profit + "руб.");
+            else {
+                font.setColor(Color.RED);
+                glyphProf = new GlyphLayout(font, profit + "руб.");
+            }
         }
 
         @Override
@@ -156,6 +189,10 @@ public class GameScreen implements Screen {
             batch.draw(gameBack, 0, 0, 360, 640);
             batch.draw(govLine, 40, 593, govCount * 2.8f, 10);
             batch.draw(busLine, 40, 546, busCount * 2.8f, 10);
+            font.draw(batch, glyphGov, 255, 607 + glyphGov.height);
+            font.draw(batch, glyphBus, 235, 560 + glyphBus.height);
+            font.draw(batch, glyphCap, 180 - glyphCap.width / 2, 480 + glyphCap.height);
+            font.draw(batch, glyphProf, 180 - glyphProf.width / 2, 455 + glyphProf.height);
         }
     }
 }

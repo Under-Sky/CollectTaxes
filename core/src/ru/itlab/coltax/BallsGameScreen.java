@@ -17,7 +17,7 @@ public class BallsGameScreen implements Screen {
     BottleForBalls bfb;
 
     public float speed = 50 + MainActivity.months * 3;
-    Vector2 touchPos;
+    Vector2 touchPos, touchOnce;
 
     @Override
     public void show() {
@@ -30,6 +30,7 @@ public class BallsGameScreen implements Screen {
         stage.addActor(bfb);
 
         touchPos = new Vector2(0, 0);
+        touchOnce = new Vector2(-100, -100);
         Gdx.input.setInputProcessor(stage);
     }
 
@@ -42,11 +43,13 @@ public class BallsGameScreen implements Screen {
             balls.add(new Ball(speed));
 
         for (Ball ball : balls) {
-            if (Gdx.input.isTouched(0) && ball.circle.contains(Gdx.input.getX(0), 640 - Gdx.input.getY(0))) {
+            if (Gdx.input.isTouched(0) && !touchOnce.equals(new Vector2(Gdx.input.getX(0), 640 - Gdx.input.getY(0)))
+                    && ball.circle.contains(Gdx.input.getX(0), 640 - Gdx.input.getY(0))) {
                 ball.isTouched = true;
                 ball.circle = new Circle(0, 110, 40);
                 balls.add(new Ball(speed));
-                bfb.add(ball);
+                bfb.add(ball);//TODO add listener for every button instead "isTouched"
+                touchOnce = new Vector2(Gdx.input.getX(0), 640 - Gdx.input.getY(0));
             }
 
             ball.update(stage.getBatch(), delta);
@@ -54,7 +57,6 @@ public class BallsGameScreen implements Screen {
 
         stage.act(delta);
         stage.draw();
-
     }
 
     @Override
