@@ -21,12 +21,12 @@ public class AboutUsScreen implements Screen {
     public class Logo extends Actor {
         Texture logo;
         public Logo() {
-            logo = new Texture(Gdx.files.internal("ploti_ru.png"));
+            logo = new Texture(Gdx.files.internal("AboutGame.png"));
         }
 
         @Override
         public void draw(Batch batch, float parentAlpha) {
-            batch.draw(logo, 30, 0, 300, 70);
+            batch.draw(logo, 0,0,360,640);
         }
     }
 
@@ -36,7 +36,7 @@ public class AboutUsScreen implements Screen {
         stage = new Stage(viewport);
 
         stage.addActor(new Logo());
-        createImageButton(0,578,62,62,"exit");
+        createImageButton(55,52,250,50,"exit");
 
         Gdx.input.setInputProcessor(stage);
     }
@@ -81,7 +81,7 @@ public class AboutUsScreen implements Screen {
         imageButtonStyle.pressedOffsetY = -1;
 //        imageButtonStyle.up = skin.getDrawable(text); //Set image
 //        imageButtonStyle.up = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal(text + ".png")))); //Set image
-        imageButtonStyle.up = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("badlogic.jpg")))); //Set image
+        imageButtonStyle.up = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal(text + ".png")))); //Set image
         ImageButton imageButton = new ImageButton(imageButtonStyle);
         imageButton.setSize(width, height);
         imageButton.setPosition(x, y);

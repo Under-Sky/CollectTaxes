@@ -24,14 +24,15 @@ public class MenuScreen implements Screen {
         viewport = new StretchViewport(360, 640);
         stage = new Stage(viewport);
 
-        back = new Texture(Gdx.files.internal("badlogic.jpg"));
+        back = new Texture(Gdx.files.internal("MainPage.png"));
 
-        createImageButton(33, 409, 299, 62, "newGame", 1);
-        createImageButton(33, 306, 299, 62, "continue", 2);
-        createImageButton(33, 203, 299, 62, "aboutUs", 3);
-        createImageButton(151, 100, 62, 62, "share", 4);
-        createImageButton(290, 568, 62, 62, "settings", 5);
+        createImageButton(55,204,250,50, "newGame", 1);
+        createImageButton(55, 294, 250, 50, "continue", 2);
+        createImageButton(55,114,250,50, "aboutUs", 3);
+        createImageButton(165,44,30,30, "share", 4);
+        createImageButton(320,600,30,30, "settings", 5);
         Gdx.input.setInputProcessor(stage);
+
     }
 
     @Override

@@ -17,19 +17,19 @@ public class SettingsScreen implements Screen {
     Stage stage;
     StretchViewport viewport;
     Slider slider;
-//    Texture back;
+    Texture back;
 
     @Override
     public void show() {
         viewport = new StretchViewport(360, 640);
         stage = new Stage(viewport);
 
-//        back = new Texture(Gdx.files.internal("backSet.png"));
+        back = new Texture(Gdx.files.internal("backSet.png"));
 
         slider = new Slider(stage);
         stage.addActor(slider);
 
-        createImageButton(0, 580, 60, 60, "exit");
+        createImageButton(55,52,250,50, "exit");
 
         Gdx.input.setInputProcessor(stage);
     }
@@ -41,7 +41,7 @@ public class SettingsScreen implements Screen {
 
         stage.act(delta);
         stage.getBatch().begin();
-//        stage.getBatch().draw(back, 0, 0, 360, 640);
+        stage.getBatch().draw(back, 0, 0, 360, 640);
         stage.getBatch().end();
         stage.draw();
     }
@@ -76,7 +76,7 @@ public class SettingsScreen implements Screen {
         imageButtonStyle = new ImageButton.ImageButtonStyle();
         imageButtonStyle.pressedOffsetY = -1;
 //        imageButtonStyle.up = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal(text + ".png")))); //Set image
-        imageButtonStyle.up = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal("badlogic.jpg")))); //Set image
+        imageButtonStyle.up = new SpriteDrawable(new Sprite(new Texture(Gdx.files.internal(text + ".png")))); //Set image
         ImageButton imageButton = new ImageButton(imageButtonStyle);
         imageButton.setSize(width, height);
         imageButton.setPosition(x, y);
