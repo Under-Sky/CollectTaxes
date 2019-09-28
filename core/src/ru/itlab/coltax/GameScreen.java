@@ -45,14 +45,14 @@ public class GameScreen implements Screen {
         taxButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                MainActivity.changeGame = true;
+//                MainActivity.changeGame = true;
             }
         });
         infoButton = createGameImageButton(295, 370, 40, 40, "tax");
         infoButton.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                MainActivity.changeGame = true;
+//                MainActivity.changeGame = true;
             }
         });
         gameGroup.addActor(infoButton);

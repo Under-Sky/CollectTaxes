@@ -60,6 +60,6 @@ public class BottleForBalls extends Actor {
             for (int i = 0; i < 3; i++)
                 last3Objects[i].circle.x = 126 + 80 * i;
         }
-        if(maxAnses == correctAnses+wrongAnses+3)MainActivity.changeGame = true;
+//        if(maxAnses == correctAnses+wrongAnses+3)MainActivity.changeGame = true;
     }
 }

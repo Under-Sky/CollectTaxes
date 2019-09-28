@@ -59,13 +59,7 @@ public class MainActivity extends Game implements ApplicationListener {
                     break;
             }
 
-        switch (changeGame){
-            case 1:
-                setScreen(gs);
-                bgs.dispose();
-            case 2:
-            case 3:
-        }
+        //TODO bgs <-> gs <-> info
 
         if(isExit){
             setScreen(ms);
