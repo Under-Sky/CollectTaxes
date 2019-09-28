@@ -2,6 +2,7 @@ package ru.itlab.coltax;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Screen;
 
 public class MainActivity extends Game implements ApplicationListener {
     private Share share;
@@ -62,7 +63,10 @@ public class MainActivity extends Game implements ApplicationListener {
         //TODO bgs <-> gs <-> info
 
         if(isExit){
+            if(getScreen().equals(ss))ss.save();
+            Screen screen = getScreen();
             setScreen(ms);
+            screen.dispose();
             isExit = false;
         }
     }
