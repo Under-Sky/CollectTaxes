@@ -69,7 +69,8 @@ public class MenuScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        back.dispose();
+        stage.dispose();
     }
 
     public void createImageButton(float x, float y, float width, float height, String text, final int screen) {

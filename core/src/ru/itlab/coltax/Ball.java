@@ -77,4 +77,9 @@ public class Ball extends Actor {
         circle.y = 700;
         circle.radius = size * 40;
     }
+
+    public void dispose(){
+        font.dispose();
+        renderer.dispose();
+    }
 }

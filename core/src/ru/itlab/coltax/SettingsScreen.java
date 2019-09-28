@@ -16,7 +16,6 @@ public class SettingsScreen implements Screen {
 
     Stage stage;
     StretchViewport viewport;
-    Slider slider;
     Texture back;
 
     @Override
@@ -25,9 +24,6 @@ public class SettingsScreen implements Screen {
         stage = new Stage(viewport);
 
         back = new Texture(Gdx.files.internal("backSet.png"));
-
-        slider = new Slider(stage);
-        stage.addActor(slider);
 
         createImageButton(55,52,250,50, "exit");
 
@@ -68,7 +64,8 @@ public class SettingsScreen implements Screen {
 
     @Override
     public void dispose() {
-
+        back.dispose();
+        stage.dispose();
     }
 
     public void createImageButton(float x, float y, float width, float height, String text) {
