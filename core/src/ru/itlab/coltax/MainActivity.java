@@ -68,7 +68,7 @@ public class MainActivity extends Game implements ApplicationListener {
         //TODO bgs <-> gs <-> info
 
         if(isExit){
-            if(getScreen().equals(ss))ss.save();
+//            if(getScreen().equals(ss))ss.save();
             Screen screen = getScreen();
             setScreen(ms);
             screen.dispose();
