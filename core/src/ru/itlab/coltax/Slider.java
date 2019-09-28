@@ -16,6 +16,7 @@ public class Slider extends Actor {
     Texture dot, line, dot2, line2;
     BitmapFont value;
     GlyphLayout valueGlyph, value2Glyph;
+    Preferences prefs;
     Stage stage;
     Vector2 touchPos, dotPos, dot2Pos;
     Rectangle linePos, line2Pos;
@@ -50,7 +51,6 @@ public class Slider extends Actor {
         touchPos = new Vector2(0, 0);
         if (Gdx.input.isTouched(0)) {
             touchPos.set(Gdx.input.getX(0), Gdx.input.getY(0));
-            Gdx.app.log("Pos", touchPos.x+" "+touchPos.y);
             touchPos.y = 640 - touchPos.y;
             if (linePos.contains(touchPos)) {
                 dotPos.x = touchPos.x - 15;

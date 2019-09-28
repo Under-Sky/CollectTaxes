@@ -39,24 +39,29 @@ public class MainActivity extends Game implements ApplicationListener {
                     gs.renderType = true;
                     setScreen(gs);
                     MenuScreen.screen = 0;
+                    ms.dispose();
                     break;
                 case 2:
                     gs.Load();
                     gs.renderType = false;
                     setScreen(gs);
                     MenuScreen.screen = 0;
+                    ms.dispose();
                     break;
                 case 3:
                     setScreen(aus);
                     MenuScreen.screen = 0;
+                    ms.dispose();
                     break;
                 case 4:
                     share.Send();
                     MenuScreen.screen = 0;
+                    ms.dispose();
                     break;
                 case 5:
                     setScreen(ss);
                     MenuScreen.screen = 0;
+                    ms.dispose();
                     break;
             }
 

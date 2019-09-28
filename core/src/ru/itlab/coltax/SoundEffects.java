@@ -14,4 +14,9 @@ public class SoundEffects {
         if(isMusic)music.setVolume(volume);
         else sound.setVolume(volume);
     }
+
+    public void dispose(){
+        music.dispose();
+        sound.dispose();
+    }
 }

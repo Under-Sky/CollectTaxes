@@ -62,4 +62,10 @@ public class BottleForBalls extends Actor {
         }
 //        if(maxAnses == correctAnses+wrongAnses+3)MainActivity.changeGame = true;
     }
+
+    public void dispose(){
+        bottle.dispose();;
+        stand.dispose();
+        water.dispose();
+    }
 }
