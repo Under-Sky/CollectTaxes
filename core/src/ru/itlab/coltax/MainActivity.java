@@ -15,7 +15,7 @@ public class MainActivity extends Game implements ApplicationListener {
     AboutUsScreen aus;
     SettingsScreen ss;
     BallsGameScreen bgs;
-    public static boolean isExit = false;
+    public static boolean isExit = false, changeGame = false;
     public static int months = 1;
 
     @Override
@@ -25,7 +25,7 @@ public class MainActivity extends Game implements ApplicationListener {
         aus = new AboutUsScreen();
         ss = new SettingsScreen();
         bgs = new BallsGameScreen();
-        setScreen(bgs);
+        setScreen(ms);
     }
 
     @Override
@@ -59,7 +59,15 @@ public class MainActivity extends Game implements ApplicationListener {
                     break;
             }
 
-        //gs -> bgs => bgs.speed = gs.month*(formula)
+        if(getScreen().equals(gs) && changeGame){
+            setScreen(bgs);
+            gs.dispose();
+            changeGame = false;
+        } else if(getScreen().equals(bgs) && changeGame){
+            setScreen(gs);
+            bgs.dispose();
+            changeGame = false;
+        }
 
         if(isExit){
             setScreen(ms);
